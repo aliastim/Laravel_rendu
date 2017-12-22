@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class BlogController extends Controller
+{
+   public function Index()
+   {
+       $posts =
+           [
+               'Article 1' => 'je suis l\'article 1',
+               'Article 2' => 'je suis l\'article 2',
+               'Article 3' => 'je suis l\'article 3',
+               'Article 4' => 'je suis l\'article 4',
+               'Article 5' => 'je suis l\'article 5',
+               'Article 6' => 'je suis l\'article 6'
+           ];
+
+       return view('blog.index', compact('posts'));
+   }
+}
