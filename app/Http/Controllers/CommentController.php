@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class BlogController extends Controller
+class CommentController extends Controller
 {
     public function __construct()
     {
@@ -20,21 +19,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        /*$posts =
-            [
-                'Article 1' => 'je suis l\'article 1',
-                'Article 2' => 'je suis l\'article 2',
-                'Article 3' => 'je suis l\'article 3',
-                'Article 4' => 'je suis l\'article 4',
-                'Article 5' => 'je suis l\'article 5',
-                'Article 6' => 'je suis l\'article 6'
-            ];*/
+        $comments = Comment::all();
+        //dd($comments);
 
-        //$posts = DB::table('posts')->get();
-        $posts = Post::all();
-        //dd($posts);
-
-        return view('blog.index', compact('posts'));
+        return view('comment.index', compact('comments'));
     }
 
     /**
@@ -44,7 +32,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        return view('comment.create');
     }
 
     /**
@@ -56,39 +44,35 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
-            'status' => 'required'
+            'username' => 'required',
+            'comment' => 'required'
         ]);
 
-        $post = new Post;
-        $post->user_id = $request->user()->id;
-        $post->title = $request->get('title');
-        $post->slug = str_slug($request->get('title'));
-        $post->body = $request->get('body');
-        $post->status = $request->post('status');
-        $post->save();
+        $comment = new Comment();
+        $comment->user_id = $request->user()->id;
+        $comment->username = $request->get('username');
+        $comment->comment = $request->get('comment');
+        $comment->save();
 
-        return redirect()->route('blog.index');
+        return redirect()->route('comment.index');
         //dd($request);
     }
-
 
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  string  $username
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($username)
     {
-        $post = Post::where('slug', $slug)->first();
+        $comment = Comment::where('username', $username)->first();
 
-        if(!$post)
+        if(!$comment)
         {
-            return redirect()->route('blog.index');
+            return redirect()->route('comment.index');
         }
-        return view('blog.show', compact('post'));
+        return view('comment.show', compact('comment'));
     }
 
     /**

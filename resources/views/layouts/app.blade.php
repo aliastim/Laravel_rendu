@@ -31,14 +31,14 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;<a href="{{Route('blog.index')}}">Blog</a>
-                    </ul>
-
+                    <a class="navbar-brand" href="{{Route('blog.index')}}">Blog</a><!--nav navbar-nav-->
+                    <a class="navbar-brand" href="{{Route('blog.create')}}">Create article</a>
+                    <a class="navbar-brand" href="{{Route('comment.index')}}">Create comment</a>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->

@@ -1,4 +1,4 @@
-@extends('template.layout')
+@extends('layouts.app')
 
 @section('pageTitle', 'Accueil')
 
@@ -19,7 +19,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            Hello mon beau {{$prenom }} {{$nom}}
+            Hello {{$prenom }} {{$nom}}
         </div>
 
         <div class="links">

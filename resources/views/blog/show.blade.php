@@ -13,6 +13,15 @@
             <p>{{ $post->body }}</p>
 
             </div>
+            <div class="container">
+            <div class="col-md-6 text-center col-md-offset-3">
+
+                <hr>
+                <h3 class="text-center">Votre commentaire</h3><br>
+                <a href="{{route('comment.create')}}" class="btn btn-default">Votre commentaire</a>
+
+            </div>
+            </div>
         </div>
     </div>
 
