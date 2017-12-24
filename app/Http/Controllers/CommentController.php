@@ -36,6 +36,16 @@ class CommentController extends Controller
     }
 
     /**
+     * Test the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function test()
+    {
+        return view('blog.create');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,6 +60,7 @@ class CommentController extends Controller
 
         $comment = new Comment();
         $comment->user_id = $request->user()->id;
+        $comment->numarticle = $request->get('numarticle');
         $comment->username = $request->get('username');
         $comment->comment = $request->get('comment');
         $comment->save();
@@ -61,18 +72,20 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $username
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($username)
+    public function show($id)
     {
-        $comment = Comment::where('username', $username)->first();
+
+        $comment = Comment::where('id', $id)->first();
 
         if(!$comment)
         {
             return redirect()->route('comment.index');
         }
-        return view('comment.show', compact('comment'));
+        return view('comment.editcom', compact('comment'));
+        //return view('comment.editcom');
     }
 
     /**
@@ -95,7 +108,19 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return view('comment.update');
+
+        $this->validate($request, [
+            'username' => 'required',
+            'comment' => 'required'
+        ]);
+
+        $comment = Comment::where('id', $id);
+        $comment->username = $request->get('username');
+        $comment->comment = $request->get('comment');
+        $comment->save();
+
+        return redirect()->route('comment.update');
     }
 
     /**

@@ -32,6 +32,7 @@ class BlogController extends Controller
 
         //$posts = DB::table('posts')->get();
         $posts = Post::all();
+        //$comments = DB::table('comments')->latest()->get();
         //dd($posts);
 
         return view('blog.index', compact('posts'));
@@ -83,12 +84,13 @@ class BlogController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $comments = DB::table('comments')->latest()->get();
 
         if(!$post)
         {
             return redirect()->route('blog.index');
         }
-        return view('blog.show', compact('post'));
+        return view('blog.show', compact('post', 'comments'));
     }
 
     /**

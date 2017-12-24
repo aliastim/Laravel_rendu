@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('pageTitle')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -38,7 +38,8 @@
                     <!-- Left Side Of Navbar -->
                     <a class="navbar-brand" href="{{Route('blog.index')}}">Blog</a><!--nav navbar-nav-->
                     <a class="navbar-brand" href="{{Route('blog.create')}}">Create article</a>
-                    <a class="navbar-brand" href="{{Route('comment.index')}}">Create comment</a>
+                    <a class="navbar-brand" href="{{Route('comment.index')}}">All comments</a>
+                    <a class="navbar-brand" href="{{Route('comment.update', 1)}}">Update or Delete comment</a>
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
