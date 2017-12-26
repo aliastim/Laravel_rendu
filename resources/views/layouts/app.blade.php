@@ -39,7 +39,7 @@
                     <a class="navbar-brand" href="{{Route('blog.index')}}">Blog</a><!--nav navbar-nav-->
                     <a class="navbar-brand" href="{{Route('blog.create')}}">Create article</a>
                     <a class="navbar-brand" href="{{Route('comment.index')}}">All comments</a>
-                    <a class="navbar-brand" href="{{Route('comment.update', 1)}}">Update or Delete comment</a>
+                    <!--<a class="navbar-brand" href="Route('comment.update', 1)}}">Update or Delete comment</a>-->
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->

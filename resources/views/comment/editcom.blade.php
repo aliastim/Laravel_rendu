@@ -19,7 +19,8 @@
         @endIf
 
 
-        <form method="get" action="{{route('comment.update', $comment-> id)}}">
+        <form method="POST" action="{{route('comment.update', $comment-> id)}}">
+            {{ csrf_field() }}
 
             <div class="form-group {{ $errors->has('username') ? 'has-error' : "" }}">
                 <input class="form-control" type="text" name="username" id="username" placeholder="Username" value="{{ $comment-> username }}">
@@ -30,8 +31,15 @@
             <div class="form-group {{ $errors->has('comment') ? 'has-error' : "" }}">
                 <textarea class="form-control" name=comment id=comment" placeholder="Comment" cols="30" rows="9">{{ $comment-> comment}}</textarea>
             </div>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}"> <!-- résout un bug -->
+
+            <input name="_method" type="hidden" value="PUT">
             <input class="btn btn-default" type="submit" value="Poster">
+        </form>
+
+        <form method="POST" action="{{route('comment.destroy', $comment-> id)}}">
+            {{ csrf_field() }}
+            <input name="_method" type="hidden" value="DELETE">
+            <input class="btn btn-default" type="submit" value="Supprimer le commentaire">
         </form>
 
 

@@ -108,19 +108,22 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //return view('comment.update');
+       //return redirect()->route('comment.index');
 
         $this->validate($request, [
             'username' => 'required',
             'comment' => 'required'
         ]);
 
-        $comment = Comment::where('id', $id);
+        $comment = Comment::find($id);
+        //$comment = Comment::where('id', $id);
         $comment->username = $request->get('username');
         $comment->comment = $request->get('comment');
         $comment->save();
 
-        return redirect()->route('comment.update');
+        //dd($comment);
+
+        return redirect()->route('comment.index');
     }
 
     /**
@@ -131,6 +134,11 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete
+        $comment = Comment::find($id);
+        $comment->delete();
+
+        // redirect
+        return redirect()->route('comment.index');
     }
 }

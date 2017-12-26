@@ -38,6 +38,7 @@
                     <div class="col-md-6 text-center">
                         <h3>{{ $post2->username }}</h3>
                         <p>{{ $post2->comment }}</p>
+                        <a href="{{route('comment.update', $post2->id)}}" class="btn btn-default">Modifer/Supprimer</a>
 
                     </div>
                     @endif
