@@ -101,7 +101,26 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        if($post->liked != 1)
+        {
+            $post->liked = 1;
+            $post->total_liked++;
+            $post->save();
+        }
+        else
+        {
+            $post->liked = 0;
+            if($post->total_liked > 0)
+            {
+                $post->total_liked--;
+            }
+            $post->save();
+        }
+
+        return redirect()->route('blog.show', $post->slug);
+
     }
 
     /**
@@ -126,4 +145,5 @@ class BlogController extends Controller
     {
         //
     }
+
 }

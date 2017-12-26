@@ -11,7 +11,14 @@
                 <h2><i>Auteur : {{$post->user->name}}</i></h2>
                 @endif
             <p>{{ $post->body }}</p>
-                <p>{{ $post->user_id }}</p>
+
+                @if($post->liked !== 1)
+                <a href="{{route('blog.edit', $post->id)}}"><i class="far fa-heart"></i></a>
+                @else
+                <a href="{{route('blog.edit', $post->id)}}"><i class="fas fa-heart"></i></a>
+                @endif
+
+                <label>Cet article a été aimé : {{ $post->total_liked }} fois</label>
 
             </div>
             <div class="container">
