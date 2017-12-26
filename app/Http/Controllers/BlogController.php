@@ -67,6 +67,7 @@ class BlogController extends Controller
         $post->title = $request->get('title');
         $post->slug = str_slug($request->get('title'));
         $post->body = $request->get('body');
+        $post->total_liked=0;
         $post->status = $request->post('status');
         $post->save();
 

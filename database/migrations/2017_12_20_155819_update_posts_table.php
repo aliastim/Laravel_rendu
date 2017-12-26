@@ -16,6 +16,8 @@ class UpdatePostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->integer('user_id')->unsigned()->nullable()->after('id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('liked')->unsigned()->nullable()->after('body');
+            $table->integer('total_liked')->nullable()->after('liked');
         });
     }
 
@@ -29,6 +31,10 @@ class UpdatePostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropColumn(['user_id']); //pour supprimer la colonne
+            $table->dropColumn(['total_liked']);
+            $table->dropColumn(['liked']);
         });
     }
 }
+
+
