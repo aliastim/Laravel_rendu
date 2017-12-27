@@ -22,6 +22,7 @@ Route::resource('/blog', 'BlogController'); //lorsqu'on a plusieurs méthodes
     return view('blog.show', compact('posts'));
 });*/
 Route::resource('/comment', 'CommentController'); //Route pour les méthodes connectées aux commentaires
+Route::resource('/contact', 'ContactController');
 //Route::get('views/comment/test', 'CommentController@test');
 Auth::routes();
 

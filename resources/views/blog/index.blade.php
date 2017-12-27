@@ -13,7 +13,7 @@
             <div class="col-md-6 text-center">
                 <h3>{{ $post->title }}</h3>
                 <p>{{ $post->body }}</p>
-                <a href="{{route('blog.show', $post->slug)}}" class="btn btn-default">BOUTON</a>
+                <a href="{{route('blog.show', $post->slug)}}" class="btn btn-default">Découvrir</a>
             </div>
         @endforeach
 

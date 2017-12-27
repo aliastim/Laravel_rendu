@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Création d\'articles')
+
 @section('content') <!--injecte ce contenu dans le yield -->
 
 <div class="container">
